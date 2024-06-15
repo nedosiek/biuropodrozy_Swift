@@ -1,4 +1,4 @@
-/*public abstract class Fight {
+public abstract class Fight {
 
     public static void stats_updating(int i, int j, double first_coeff, double second_coeff){
         Swifties.list_of_artists_[i].budget += Swifties.list_of_artists_[j].budget * (1 + first_coeff);
@@ -75,10 +75,10 @@
         }*/
 
 
-            /*for (int i = 0; i < Swifties.list_of_artists_.length; i++) {
+            for (int i = 0; i < Swifties.list_of_artists_.length; i++) {
                 System.out.println(Swifties.list_of_artists_[i].budget);
-            }*/
+            }
 
 
-            /*return Swifties.list_of_artists_;
-        }}*/
+            return Swifties.list_of_artists_;
+        }}
