@@ -1,8 +1,10 @@
 import java.util.Random;
 
 public class Amateur extends Artist {
-    public static double amateur_popularity_coeff = Artist.popularity_coefficient - (Swifties.number_of_artists_ * 0.05);
-    public static double amateur_budget_coeff = Artist.budget_coefficient - (Swifties.number_of_artists_ * 0.07);
+    public static double amateur_popularity_coeff = Swifties.number_of_artists_ * 0.05;
+    public static double amateur_budget_coeff = Swifties.number_of_artists_ * 0.07;
+
+
     public Amateur(String pseudonym, double budget, double popularity){
         super(pseudonym, budget, popularity);
         this.budget = budget*0.65;
