@@ -15,13 +15,16 @@ public class Swifties {
        try {
            List<String> artistNames = DataReader.read_data("ListOfArtists.txt", number_of_artists_);
            list_of_artists_ = new Artist[artistNames.size()];
+           for (int i = 0; i < artistNames.size(); i++) {
+               list_of_artists_[i] = new Artist(artistNames.get(i), 0, 0);
+           }
            System.out.println(artistNames);
 
        } catch (IOException e) {
            System.out.println("Wystapil blad podczas odczytu pliku.");
            e.printStackTrace();
        }
-       our_object.close();
+       //our_object.close();
 
        //return number_of_artists_ = number_of_artists;
        return number_of_artists_;
@@ -29,6 +32,7 @@ public class Swifties {
 
 
    public static Artist[] creating_list_of_artists() { //tu tworzymy liste artystow (obiektow) z ich danymi
+       //Swifties.how_many_artists();
        Random random_budget = new Random();
        Random random_popularity = new Random();
 

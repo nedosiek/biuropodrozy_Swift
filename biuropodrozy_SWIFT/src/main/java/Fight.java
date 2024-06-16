@@ -12,6 +12,12 @@ public abstract class Fight {
 
     public static Artist[] comparison() {
         SplitIntoPairs.distance();
+        double ts_popularity_coeff = Swifties.list_of_artists_.length * 0.005;
+        double ts_budget_coeff = Swifties.list_of_artists_.length * 0.014;
+        double ab_popularity_coeff = Artist.popularity_coefficient - (Swifties.list_of_artists_.length * 0.01);
+        double ab_budget_coeff = Artist.budget_coefficient - (Swifties.list_of_artists_.length * 0.014);
+        double amateur_popularity_coeff = Swifties.list_of_artists_.length * 0.05;
+        double amateur_budget_coeff = Swifties.list_of_artists_.length * 0.07;
         int meet_n_greet_counter = 0;
         double first_artist; //artysta 1. w walce
         double second_artist; //artysta 2. w walce
@@ -38,33 +44,33 @@ public abstract class Fight {
                         if (Swifties.list_of_artists_[j].pseudonym.equals("Taylor Swift")) { // TS przegrywa
                             TaylorSwift.TS_losses++;
                             if (Swifties.list_of_artists_[i].pseudonym.equals("Azealia Banks")) {
-                                stats_updating(i, j, AzealiaBanks.ab_budget_coeff, AzealiaBanks.ab_popularity_coeff);
+                                stats_updating(i, j, ab_budget_coeff, ab_popularity_coeff);
                             } else if (Swifties.list_of_artists_[i].pseudonym.equals("Amateur")) {
-                                stats_updating(i, j, TaylorSwift.ts_budget_coeff + Artist.budget_coefficient, TaylorSwift.ts_popularity_coeff + Artist.popularity_coefficient);
+                                stats_updating(i, j, ts_budget_coeff + Artist.budget_coefficient, ts_popularity_coeff + Artist.popularity_coefficient);
                             } else if (!Swifties.list_of_artists_[i].pseudonym.equals("Taylor Swift") && !Swifties.list_of_artists_[i].pseudonym.equals("Azealia Banks") && !Swifties.list_of_artists_[i].pseudonym.equals("Amateur")) {
-                                stats_updating(i, j, TaylorSwift.ts_budget_coeff + Artist.budget_coefficient, TaylorSwift.ts_popularity_coeff + Artist.popularity_coefficient);
+                                stats_updating(i, j, ts_budget_coeff + Artist.budget_coefficient, ts_popularity_coeff + Artist.popularity_coefficient);
                             }
                             TaylorSwift.taylor_is_in_jet();
 
                         } else if (Swifties.list_of_artists_[j].pseudonym.equals("Amateur")) { //Amateur przegrywa
                             if (Swifties.list_of_artists_[i].pseudonym.equals("Taylor Swift")) {
-                                stats_updating(i, j, Artist.budget_coefficient - TaylorSwift.ts_budget_coeff, Artist.popularity_coefficient - TaylorSwift.ts_popularity_coeff);
+                                stats_updating(i, j, Artist.budget_coefficient - ts_budget_coeff, Artist.popularity_coefficient - ts_popularity_coeff);
                                 TaylorSwift.TS_losses++;
                                 TaylorSwift.taylor_is_in_jet();
                             } else if (Swifties.list_of_artists_[i].pseudonym.equals("Azealia Banks")) {
-                                stats_updating(i, j, AzealiaBanks.ab_budget_coeff, AzealiaBanks.ab_popularity_coeff);
+                                stats_updating(i, j, ab_budget_coeff, ab_popularity_coeff);
                             } else if (!Swifties.list_of_artists_[i].pseudonym.equals("Taylor Swift") && !Swifties.list_of_artists_[i].pseudonym.equals("Azealia Banks") && !Swifties.list_of_artists_[i].pseudonym.equals("Amateur")) {
-                                stats_updating(i, j, Artist.budget_coefficient - Amateur.amateur_budget_coeff, Artist.popularity_coefficient - Amateur.amateur_popularity_coeff);
+                                stats_updating(i, j, Artist.budget_coefficient - amateur_budget_coeff, Artist.popularity_coefficient - amateur_popularity_coeff);
                             } else if (Swifties.list_of_artists_[i].pseudonym.equals("Amateur")) {
                                 stats_updating(i, j, Artist.budget_coefficient, Artist.popularity_coefficient);
                             }
                         } else { //zwykly artysta przegrywa
                             if (Swifties.list_of_artists_[i].pseudonym.equals("Taylor Swift")) {
-                                stats_updating(i, j, Artist.budget_coefficient - TaylorSwift.ts_budget_coeff, Artist.popularity_coefficient - TaylorSwift.ts_popularity_coeff);
+                                stats_updating(i, j, Artist.budget_coefficient - ts_budget_coeff, Artist.popularity_coefficient - ts_popularity_coeff);
                             } else if (Swifties.list_of_artists_[i].pseudonym.equals("Azealia Banks")) {
-                                stats_updating(i, j, AzealiaBanks.ab_budget_coeff, AzealiaBanks.ab_popularity_coeff);
+                                stats_updating(i, j, ab_budget_coeff, ab_popularity_coeff);
                             } else if (Swifties.list_of_artists_[i].pseudonym.equals("Amateur")) {
-                                stats_updating(i, j, Artist.budget_coefficient + Amateur.amateur_budget_coeff, Amateur.amateur_popularity_coeff + Artist.popularity_coefficient);
+                                stats_updating(i, j, Artist.budget_coefficient + amateur_budget_coeff, amateur_popularity_coeff + Artist.popularity_coefficient);
                             } else
                                 stats_updating(i, j, Artist.budget_coefficient, Artist.popularity_coefficient); //inny zwykly artysta wygral
                         }
@@ -72,30 +78,30 @@ public abstract class Fight {
                     } else if (first_artist < second_artist){
                         if (Swifties.list_of_artists_[j].pseudonym.equals("Taylor Swift")) { // TS wygrywa
                             if (Swifties.list_of_artists_[i].pseudonym.equals("Amateur")) {
-                                stats_updating(i, j, Artist.budget_coefficient - TaylorSwift.ts_budget_coeff, Artist.popularity_coefficient - TaylorSwift.ts_popularity_coeff);
+                                stats_updating(i, j, Artist.budget_coefficient - ts_budget_coeff, Artist.popularity_coefficient - ts_popularity_coeff);
                             } else if (!Swifties.list_of_artists_[i].pseudonym.equals("Taylor Swift") && !Swifties.list_of_artists_[i].pseudonym.equals("Azealia Banks") && !Swifties.list_of_artists_[i].pseudonym.equals("Amateur")) {
-                                stats_updating(i, j, Artist.budget_coefficient - TaylorSwift.ts_budget_coeff, TaylorSwift.ts_popularity_coeff + Artist.popularity_coefficient);
+                                stats_updating(i, j, Artist.budget_coefficient - ts_budget_coeff, ts_popularity_coeff + Artist.popularity_coefficient);
                             }
 
                         } else if (Swifties.list_of_artists_[j].pseudonym.equals("Amateur")) { //Amateur wygrywa
                             if (Swifties.list_of_artists_[i].pseudonym.equals("Taylor Swift")) {
                                 TaylorSwift.TS_losses++;
-                                stats_updating(i, j, Artist.budget_coefficient + TaylorSwift.ts_budget_coeff, Artist.popularity_coefficient + TaylorSwift.ts_popularity_coeff);
+                                stats_updating(i, j, Artist.budget_coefficient + ts_budget_coeff, Artist.popularity_coefficient + ts_popularity_coeff);
                                 TaylorSwift.taylor_is_in_jet();
                             } else if (!Swifties.list_of_artists_[i].pseudonym.equals("Taylor Swift") && !Swifties.list_of_artists_[i].pseudonym.equals("Azealia Banks") && !Swifties.list_of_artists_[i].pseudonym.equals("Amateur")) {
-                                stats_updating(i, j, Artist.budget_coefficient + Amateur.amateur_budget_coeff, Artist.popularity_coefficient + Amateur.amateur_popularity_coeff);
+                                stats_updating(i, j, Artist.budget_coefficient + amateur_budget_coeff, Artist.popularity_coefficient + amateur_popularity_coeff);
                             } else if (Swifties.list_of_artists_[i].pseudonym.equals("Amateur")) {
                                 stats_updating(i, j, Artist.budget_coefficient, Artist.popularity_coefficient);
                             }
                         } else if (Swifties.list_of_artists_[j].pseudonym.equals("Azealia Banks")) { //Azelia Banks wygrywa
-                            stats_updating(i, j, AzealiaBanks.ab_budget_coeff, AzealiaBanks.ab_popularity_coeff);
+                            stats_updating(i, j, ab_budget_coeff, ab_popularity_coeff);
                         } else { //zwykly artysta wygrywa
                             if (Swifties.list_of_artists_[i].pseudonym.equals("Taylor Swift")) {
                                 TaylorSwift.TS_losses++;
-                                stats_updating(i, j, Artist.budget_coefficient + TaylorSwift.ts_budget_coeff, Artist.popularity_coefficient + TaylorSwift.ts_popularity_coeff);
+                                stats_updating(i, j, Artist.budget_coefficient + ts_budget_coeff, Artist.popularity_coefficient + ts_popularity_coeff);
                                 TaylorSwift.taylor_is_in_jet();
                             } else if (Swifties.list_of_artists_[i].pseudonym.equals("Amateur")) {
-                                stats_updating(i, j, Artist.budget_coefficient + Amateur.amateur_budget_coeff, Amateur.amateur_popularity_coeff + Artist.popularity_coefficient);
+                                stats_updating(i, j, Artist.budget_coefficient + amateur_budget_coeff, amateur_popularity_coeff + Artist.popularity_coefficient);
                             } else
                                 stats_updating(i, j, Artist.budget_coefficient, Artist.popularity_coefficient); //inny zwykly artysta przegral
                         }

@@ -6,8 +6,8 @@ public class TaylorSwift extends Artist {
     public static int TS_in_jet = 0;
 
     // nie są to zmienne ostateczne. zmieniamy je w zaleznosci od wygrania/przegrania Artystki (+/-)
-    public static double ts_popularity_coeff = Swifties.list_of_artists_.length * 0.005;
-    public static double ts_budget_coeff = Swifties.list_of_artists_.length * 0.014;
+    //public static double ts_popularity_coeff = Swifties.list_of_artists_.length * 0.005;
+    //public static double ts_budget_coeff = Swifties.list_of_artists_.length * 0.014;
 
 
     public TaylorSwift(String pseudonym, double budget, double popularity){

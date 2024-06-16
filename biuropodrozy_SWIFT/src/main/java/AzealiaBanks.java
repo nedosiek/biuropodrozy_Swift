@@ -2,8 +2,8 @@ import java.util.Random;
 
 public class AzealiaBanks extends Artist {
     public final double AB_chance = 0.0075; //szansa na pojawienie sie agenta Azealia Banks
-    public static double ab_popularity_coeff = Artist.popularity_coefficient - (Swifties.list_of_artists_.length * 0.01);
-    public static double ab_budget_coeff = Artist.budget_coefficient - (Swifties.list_of_artists_.length * 0.014);
+//    public static double ab_popularity_coeff = Artist.popularity_coefficient - (Swifties.list_of_artists_.length * 0.01);
+//    public static double ab_budget_coeff = Artist.budget_coefficient - (Swifties.list_of_artists_.length * 0.014);
 
     public AzealiaBanks(String pseudonym, double budget, double popularity){
         super(pseudonym, budget, popularity);
