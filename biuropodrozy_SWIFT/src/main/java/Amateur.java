@@ -3,6 +3,7 @@ import java.util.Random;
 public class Amateur extends Artist {
     public static double amateur_popularity_coeff = Swifties.number_of_artists_ * 0.05;
     public static double amateur_budget_coeff = Swifties.number_of_artists_ * 0.07;
+    public static int amateurs_streak = 0;
 
 
     public Amateur(String pseudonym, double budget, double popularity){
