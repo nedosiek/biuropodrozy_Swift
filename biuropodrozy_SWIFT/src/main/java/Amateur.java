@@ -1,27 +1,20 @@
 import java.util.Random;
 
 public class Amateur extends Artist {
-//    public static double amateur_popularity_coeff = Swifties.list_of_artists_.length * 0.05;
-//    public static double amateur_budget_coeff = Swifties.list_of_artists_.length * 0.07;
-    public static int amateurs_streak = 0;
+    public static int amateurs_streak = 0; //passa amatora
+    public static int amateur_chance = 20; // szansa na pojawienie sie amatora, [%]
 
-
-    public Amateur(String pseudonym, double budget, double popularity){
+    public Amateur(String pseudonym, double budget, double popularity){ //maska wprowadzania dla amatora
         super(pseudonym, budget, popularity);
-        this.budget = budget*0.65;
+        this.budget = budget*0.85;
         this.popularity = popularity*0.8;
         this.pseudonym = "Amateur";
 
     }
 
-    public static boolean amateurs_in_play(){
+    public static boolean amateurs_in_play(int amateur_chance){ //szansa na pojawienie sie amatora
         Random rand = new Random();
-        int random_number = rand.nextInt(5);
-        //System.out.println(random_number);
-        if (random_number==2){
-            return true;
-        } else{
-            return false;
-        }
+        int random_number = rand.nextInt(100);
+        return random_number < amateur_chance;
     }
 }
