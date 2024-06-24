@@ -1,61 +1,81 @@
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * Klasa, tworząca listę artystów
+ */
 public class Swifties {
-   static int number_of_artists_;
-   static Artist[] list_of_artists_;
-   static Scanner our_object = new Scanner(System.in);
+    /**
+     * Zmienna, przychowująca liczbę artystów, którą wprowadza użytkownik
+     */
+   protected static int number_of_artists_;
+    /**
+     * Tablica artystów wraz z ich budżetem i popularnością
+     */
+   protected static Artist[] list_of_artists_;
+    /**
+     * Zmienna, odpowiadająca za wprowadzenie liczby artystów
+     */
+   private static final Scanner our_object = new Scanner(System.in);
 
-   public static void how_many_artists(int number_of_artists_) {
-       System.out.print("Podaj w przyblizeniu ilosc artystow w symulacji [1-60]: ");
+    /**
+     * Metoda, tworząca tablicę artystów z artystów, podanych w pliku
+     */
+   public static void how_many_artists() {
+       System.out.print("Podaj ilosc artystow w symulacji [2-60]: ");
        number_of_artists_ = our_object.nextInt();
 
+       /**
+        * Tworzenie tablicy obiektów (artystów) z ich pseudonimami, pobranymi z pliku
+        */
        try {
            List<String> artistNames = DataReader.read_data("ListOfArtists.txt", number_of_artists_);
            list_of_artists_ = new Artist[artistNames.size()];
-           for (int i = 0; i < artistNames.size(); i++) {
-               list_of_artists_[i] = new Artist(artistNames.get(i), 0, 0);
+           for (int i = 0; i < list_of_artists_.length; i++) {
+               list_of_artists_[i] = new Artist(artistNames.get(i));
            }
-           System.out.println(artistNames);
-           //our_object.close();
        } catch (IOException e) {
            System.out.println("Wystapil blad podczas odczytu pliku.");
            e.printStackTrace();
        }
-   }
 
 
-   public static Artist[] creating_list_of_artists() {//tu tworzymy liste artystow (obiektow) z ich danymi
-       how_many_artists(Swifties.number_of_artists_);
        Random random_budget = new Random();
        Random random_popularity = new Random();
 
-
-       for (int i = 0; i < DataReader.artists_.size(); i++) {
-           String artistName = DataReader.artists_.get(i);
+       /**
+        * Przypisanie każdemu obiektu budżetu i popularności w zależności od klasy obiektu
+        */
+       for (int i = 0; i < list_of_artists_.length; i++) {
            double budget = Math.round(random_budget.nextDouble() * (10500 - 10000) + 10000);
            double popularity = Math.round((random_popularity.nextDouble() * (0.40 - 0.37) + 0.37) * 100) / 100.0;
-           switch (artistName) {
+           switch (list_of_artists_[i].getPseudonym()) {
                case "Taylor Swift":
-                   list_of_artists_[i] = new TaylorSwift(artistName, budget, popularity);
+                   list_of_artists_[i] = new TaylorSwift(budget, popularity);
                    break;
                case "Azealia Banks":
-                   list_of_artists_[i] = new AzealiaBanks(artistName, budget, popularity);
+                   list_of_artists_[i] = new AzealiaBanks(budget, popularity);
                    break;
                case "Amateur":
-                   list_of_artists_[i] = new Amateur(artistName, budget, popularity);
+                   list_of_artists_[i] = new Amateur(budget, popularity);
                    break;
                default:
-                   list_of_artists_[i] = new Artist(artistName, budget, popularity);
+                   list_of_artists_[i].setPseudonym(list_of_artists_[i].getPseudonym());
+                   list_of_artists_[i].setBudget(budget);
+                   list_of_artists_[i].setPopularity(popularity);
                    break;
            }
        }
 
+       /**
+        * Wypisywanie obiektów artystów wraz z ich budżetem i popularnością
+        */
+       System.out.println("\nLista artystow wraz z poczatkowymi budzetem oraz popularnoscia:");
+       System.out.format("%-16s | " + "%11.6s | " +  "%13.11s |\n", "Pseudonim artysty", "Budzet", "Popularnosc");
        for (Artist artist_name : list_of_artists_) {
-           System.out.println(artist_name.pseudonym + " | " + artist_name.popularity + " | " + artist_name.budget);
+           System.out.format("%-17s | " + "%10.2f" + "$ | " + "%12.2f" + "%% |\n", artist_name.getPseudonym(), artist_name.getBudget(), artist_name.getPopularity());
        }
+       System.out.println("\nArtysci wraz z ich budzetem i popularnoscia tuz po walce:");
 
-       return list_of_artists_;
    }
-
 }

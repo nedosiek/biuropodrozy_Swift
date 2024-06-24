@@ -2,10 +2,19 @@ import javax.xml.crypto.Data;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Glówna klasa, która odpowiada za wywołanie metod
+ */
 public class Main {
+    /**
+     * Główna metoda, odpowiadająca za wywołanie innych metod w programie
+     * @param args argument, przekazywany programowi
+     */
     public static void main(String[] args) {
-        SplitIntoPairs.distance(); // wywołujemy metode początkową
-        Concert.artists_fighting_more(); // metoda dla znalezienia zwyciezcy
+        Swifties.how_many_artists();
+        Fight.comparison();
+        Concert.artist_plays_concert();
+        Concert.artists_fighting_more();
         //researches();
     }
 
